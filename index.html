@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Coming Soon</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Sacramento&family=Cormorant+Garamond:wght@400;500&display=swap');
+
+  :root{
+    --parchment:#e9dcc3;
+    --ink:#f4ead2;
+    --rust:#d99a4e;
+    --gold:#e8c987;
+    --line:#cdbf9e;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+
+  html,body{
+    height:100%;
+    width:100%;
+    overflow:hidden;
+    background:#1c2e2e;
+    font-family:'Cormorant Garamond', serif;
+  }
+
+  .stage{
+    position:relative;
+    width:100%;
+    height:100vh;
+  }
+
+  .darken{
+    position:absolute;
+    inset:0;
+    background:rgba(10,20,20,0.38);
+  }
+
+  /* --- Map background: your uploaded image --- */
+  .map-bg{
+    position:absolute;
+    inset:0;
+    background-image:url('map-bg.png');
+    background-size:cover;
+    background-position:center;
+  }
+
+  .grain{
+    position:absolute;
+    inset:0;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.35'/%3E%3C/svg%3E");
+    opacity:0.18;
+    mix-blend-mode:multiply;
+    pointer-events:none;
+  }
+
+  .vignette{
+    position:absolute;
+    inset:0;
+    box-shadow: inset 0 0 260px rgba(0,0,0,0.6);
+    pointer-events:none;
+  }
+
+  .content{
+    position:relative;
+    z-index:5;
+    height:100%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:0 6vw;
+  }
+
+  .eyebrow{
+    font-family:'Cormorant Garamond', serif;
+    letter-spacing:0.35em;
+    text-transform:uppercase;
+    font-size:13px;
+    color:var(--rust);
+    margin-bottom:18px;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+  }
+
+  .eyebrow::before,
+  .eyebrow::after{
+    content:'—';
+    margin:0 12px;
+    color:var(--gold);
+  }
+
+  h1{
+    font-family:'Sacramento', cursive;
+    font-size:clamp(64px, 13vw, 160px);
+    line-height:0.9;
+    color:var(--ink);
+    text-shadow: 0 3px 18px rgba(0,0,0,0.55), 0 1px 0 rgba(0,0,0,0.3);
+    transform: rotate(-2deg);
+  }
+
+  .sub{
+    margin-top:22px;
+    font-size:clamp(15px, 1.6vw, 19px);
+    font-style:italic;
+    color:var(--line);
+    max-width:480px;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.6);
+  }
+
+  .scroll-line{
+    margin-top:34px;
+    width:160px;
+    height:1px;
+    background:linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+
+  .notify{
+    margin-top:30px;
+    display:flex;
+    gap:10px;
+  }
+
+  .notify input{
+    font-family:'Cormorant Garamond', serif;
+    font-size:15px;
+    padding:10px 16px;
+    border:1px solid var(--line);
+    background:rgba(20,30,30,0.45);
+    color:var(--ink);
+    width:240px;
+    outline:none;
+  }
+  .notify input::placeholder{ color:rgba(244,234,210,0.55); }
+
+  .notify button{
+    font-family:'Cormorant Garamond', serif;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    font-size:13px;
+    padding:10px 22px;
+    border:1px solid var(--gold);
+    background:var(--gold);
+    color:#2a2113;
+    cursor:pointer;
+    transition:background 0.2s ease, color 0.2s ease;
+  }
+  .notify button:hover{
+    background:transparent;
+    color:var(--gold);
+  }
+</style>
+</head>
+<body>
+<div class="stage">
+
+  <div class="map-bg"></div>
+  <div class="darken"></div>
+
+  <div class="grain"></div>
+  <div class="vignette"></div>
+
+  <div class="content">
+    <div class="eyebrow">The journey begins</div>
+    <h1>Coming Soon</h1>
+    <p class="sub">We're charting new territory. Drop your email and we'll send word the moment the map is complete.</p>
+    <div class="scroll-line"></div>
+    <form class="notify" onsubmit="event.preventDefault(); this.querySelector('button').textContent='Noted';">
+      <input type="email" placeholder="your@email.com" required>
+      <button type="submit">Notify Me</button>
+    </form>
+  </div>
+
+</div>
+</body>
+</html>
