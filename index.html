@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Coming Soon</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Sacramento&family=Cormorant+Garamond:wght@400;500&display=swap');
@@ -115,37 +116,24 @@
     background:linear-gradient(90deg, transparent, var(--gold), transparent);
   }
 
-  .notify{
-    margin-top:30px;
-    display:flex;
-    gap:10px;
-  }
-
-  .notify input{
+  .notify-btn{
+    display:inline-block;
+    margin-top:40px;
     font-family:'Cormorant Garamond', serif;
-    font-size:15px;
-    padding:10px 16px;
-    border:1px solid var(--line);
-    background:rgba(20,30,30,0.45);
-    color:var(--ink);
-    width:240px;
-    outline:none;
-  }
-  .notify input::placeholder{ color:rgba(244,234,210,0.55); }
-
-  .notify button{
-    font-family:'Cormorant Garamond', serif;
-    letter-spacing:0.12em;
+    letter-spacing:0.15em;
     text-transform:uppercase;
-    font-size:13px;
-    padding:10px 22px;
+    font-size:14px;
+    text-decoration:none;
+    padding:12px 32px;
     border:1px solid var(--gold);
     background:var(--gold);
     color:#2a2113;
     cursor:pointer;
+    font-weight:500;
     transition:background 0.2s ease, color 0.2s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
   }
-  .notify button:hover{
+  .notify-btn:hover{
     background:transparent;
     color:var(--gold);
   }
@@ -163,12 +151,9 @@
   <div class="content">
     <div class="eyebrow">The journey begins</div>
     <h1>Coming Soon</h1>
-    <p class="sub">We're charting new territory. Drop your email and we'll send word the moment the map is complete.</p>
+    <p class="sub">We're charting new territory. Send word to our ranks and we'll notify you the moment the map is complete.</p>
     <div class="scroll-line"></div>
-    <form class="notify" action="mailto:ajdcercy@gmail.com" method="POST" enctype="text/plain">
-      <input type="email" placeholder="your@email.com" required>
-      <button type="submit">Notify Me</button>
-    </form>
+    <a href="mailto:ajdcercy@://gmail.com Me When the Map is Complete" class="notify-btn">Notify Me</a>
   </div>
 
 </div>
