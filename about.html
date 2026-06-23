@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>About the Author</title>
+<style>
+  html,body{
+    margin:0;
+    padding:0;
+    width:100%;
+    font-family:'Cormorant Garamond', serif;
+    background:#1c2e2e;
+  }
+
+  .stage{
+    position:relative;
+    min-height:100vh;
+    width:100%;
+  }
+
+  .map-bg{
+    position:absolute;
+    inset:0;
+    background-image:url('map_bg.webp');
+    background-size:cover;
+    background-position:center;
+    background-attachment:fixed;
+  }
+
+  .darken{
+    position:absolute;
+    inset:0;
+    background:rgba(10,20,20,0.72);
+  }
+
+  .content{
+    position:relative;
+    max-width:800px;
+    margin:0 auto;
+    padding:80px 6vw 100px;
+    color:#f4ead2;
+  }
+
+  h1{
+    font-size:42px;
+    text-align:center;
+    margin-bottom:40px;
+    color:#e8c987;
+  }
+
+  .photo-wrap{
+    display:flex;
+    justify-content:center;
+    margin-bottom:40px;
+  }
+
+  .photo-wrap img{
+    width:220px;
+    height:220px;
+    object-fit:cover;
+    border-radius:50%;
+    border:3px solid #e8c987;
+    box-shadow:0 10px 30px rgba(0,0,0,0.5);
+  }
+
+  .bio{
+    font-size:19px;
+    line-height:1.7;
+  }
+
+  .bio p{
+    margin-bottom:22px;
+  }
+
+  a.back{
+    display:block;
+    text-align:center;
+    margin-top:30px;
+    color:#e8c987;
+    text-decoration:none;
+    font-size:16px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+  }
+</style>
+</head>
+<body>
+
+<div class="stage">
+  <div class="map-bg"></div>
+  <div class="darken"></div>
+
+  <div class="content">
+    <h1>About the Author</h1>
+
+    <div class="photo-wrap">
+      <img src="author-photo.png" alt="A.J. d'Cercy">
+    </div>
+
+    <div class="bio">
+      <p>A.J. d'Cercy is a lifelong reader, storyteller, and devoted father from Northwest Ohio. The eldest of seven, he grew up haunting the local library — chasing Goosebumps books, devouring Redwall, and falling in love with worlds that felt bigger than his own. Video games like Final Fantasy only expanded that love of the fantastical.</p>
+
+      <p>These days, he channels that same love into writing fiction, playing video games like Elden Ring and FFXIV, running D&amp;D and Pathfinder campaigns for friends and family, and playing Magic: The Gathering — including designing his own custom cards. When he's not at the gaming table, he can be found learning swordplay, with a particular fondness for the rapier — which may explain why his debut protagonist shares the same preference.</p>
+
+      <p>His favorite books, in no particular order, are Redwall, Nevernight, Piercing the Darkness, The Cleric Quintet, and The Hot Zone. He is currently reading The Lightlark Saga, by Alex Aster.</p>
+    </div>
+
+    <a class="back" href="home.html">&larr; Back to Home</a>
+  </div>
+</div>
+
+</body>
+</html>
