@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>People of Galanthir - Coming Soon</title>
+<style>
+  html,body{
+    margin:0;
+    padding:0;
+    height:100%;
+    width:100%;
+    font-family:'Cormorant Garamond', serif;
+  }
+
+  .stage{
+    position:relative;
+    width:100%;
+    height:100vh;
+  }
+
+  .map-bg{
+    position:absolute;
+    inset:0;
+    background-image:url('map_bg.webp');
+    background-size:cover;
+    background-position:center;
+  }
+
+  .darken{
+    position:absolute;
+    inset:0;
+    background:rgba(10,20,20,0.6);
+  }
+
+  .content{
+    position:relative;
+    height:100%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    color:#f4ead2;
+  }
+
+  h1{
+    font-size:48px;
+    margin-bottom:14px;
+  }
+
+  a.back{
+    margin-top:30px;
+    color:#e8c987;
+    text-decoration:none;
+    font-size:16px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+  }
+</style>
+</head>
+<body>
+
+<div class="stage">
+  <div class="map-bg"></div>
+  <div class="darken"></div>
+
+  <div class="content">
+    <h1>The People of Galanthir</h1>
+    <p>Coming soon.</p>
+    <a class="back" href="home.html">&larr; Back to Home</a>
+  </div>
+</div>
+
+</body>
+</html>
