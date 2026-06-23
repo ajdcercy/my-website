@@ -2,13 +2,20 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Welcome to Gâlanthír</title>
+<title>Galanthir - Home</title>
 <style>
+  @font-face{
+    font-family:'OptimusPrinceps';
+    src:url('OptimusPrinceps.ttf') format('truetype');
+  }
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&display=swap');
+
   html,body{
     margin:0;
     padding:0;
     height:100%;
     width:100%;
+    font-family:'Cormorant Garamond', serif;
   }
 
   .stage{
@@ -23,6 +30,75 @@
     background-image:url('map_bg.webp');
     background-size:cover;
     background-position:center;
+  }
+
+  .darken{
+    position:absolute;
+    inset:0;
+    background:rgba(10,20,20,0.55);
+  }
+
+  .title-wrap{
+    position:relative;
+    z-index:5;
+    height:100%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:0 6vw 22vh;
+  }
+
+  .welcome{
+    font-size:clamp(22px, 3vw, 32px);
+    color:#f4ead2;
+    text-shadow:0 2px 10px rgba(0,0,0,0.6);
+  }
+
+  .welcome .title{
+    font-family:'OptimusPrinceps', serif;
+    font-size:clamp(48px, 8vw, 96px);
+    display:block;
+    color:#e8c987;
+    letter-spacing:0.04em;
+    margin-top:6px;
+    text-shadow:0 3px 18px rgba(0,0,0,0.6);
+  }
+
+  .notify{
+    margin-top:30px;
+    display:flex;
+    gap:10px;
+  }
+
+  .notify input{
+    font-family:'Cormorant Garamond', serif;
+    font-size:15px;
+    padding:10px 16px;
+    border:1px solid #cdbf9e;
+    background:rgba(20,30,30,0.45);
+    color:#f4ead2;
+    width:240px;
+    outline:none;
+  }
+  .notify input::placeholder{ color:rgba(244,234,210,0.55); }
+
+  .notify button{
+    font-family:'Cormorant Garamond', serif;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    font-size:13px;
+    padding:10px 22px;
+    border:1px solid #e8c987;
+    background:#e8c987;
+    color:#2a2113;
+    cursor:pointer;
+    transition:background 0.2s ease, color 0.2s ease;
+  }
+  .notify button:hover{
+    background:transparent;
+    color:#e8c987;
   }
 
   .icon-nav{
@@ -62,9 +138,18 @@
 
 <div class="stage">
   <div class="map-bg"></div>
+  <div class="darken"></div>
+
+  <div class="title-wrap">
+    <p class="welcome">Welcome to <span class="title">Gâlanthír</span></p>
+    <form class="notify" action="mailto:ajdcercy@gmail.com?subject=Notify%20me%20about%20G%C3%A2lanth%C3%ADr" method="POST" enctype="text/plain">
+      <input type="email" name="email" placeholder="your@email.com" required>
+      <button type="submit">Notify Me</button>
+    </form>
+  </div>
 
   <nav class="icon-nav">
-    <a href="people.html"><img src="people_icon.webp" alt="People"></a>
+    <a href="people.html"><img src="People_icon.webp" alt="People"></a>
     <a href="books.html"><img src="book_icon.webp" alt="Books"></a>
     <a href="about.html"><img src="quill_icon.webp" alt="About Me"></a>
   </nav>
