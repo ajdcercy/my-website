@@ -2,12 +2,9 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Gâlanthír - Home</title>
+<title>Galanthir - Home</title>
 <style>
-  @font-face{
-    font-family:'Cormorant Garamond';
-      }
-  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Sacramento&family=Cormorant+Garamond:wght@400;500&display=swap');
 
   html,body{
     margin:0;
@@ -34,19 +31,25 @@
   .darken{
     position:absolute;
     inset:0;
-    background:rgba(10,20,20,0.7);
+    background:rgba(10,20,20,0.55);
   }
 
   .title-wrap{
-    position:relative;
+    position:absolute;
+    inset:0;
     z-index:5;
-    height:100%;
     display:flex;
     flex-direction:column;
     align-items:center;
     justify-content:center;
     text-align:center;
     padding:0 6vw 22vh;
+    pointer-events:none;
+  }
+
+  .title-wrap .welcome,
+  .title-wrap .notify{
+    pointer-events:auto;
   }
 
   .welcome{
@@ -56,11 +59,10 @@
   }
 
   .welcome .title{
-    font-family:'Cormorant Garamond', serif;
-    font-size:clamp(48px, 8vw, 96px);
+    font-family:'Sacramento', cursive;
+    font-size:clamp(56px, 10vw, 120px);
     display:block;
     color:#e8c987;
-    letter-spacing:0.04em;
     margin-top:6px;
     text-shadow:0 3px 18px rgba(0,0,0,0.6);
   }
@@ -105,6 +107,7 @@
     bottom:0;
     left:0;
     width:100%;
+    z-index:6;
     display:flex;
     justify-content:center;
     align-items:center;
@@ -141,7 +144,7 @@
 
   <div class="title-wrap">
     <p class="welcome">Welcome to <span class="title">Gâlanthír</span></p>
-    <form class="notify" action="mailto:ajdcercy@gmail.com?subject=Notify%20me%20about%20Gâlanthír" method="POST" enctype="text/plain">
+    <form class="notify" action="mailto:ajdcercy@gmail.com?subject=Notify%20me%20about%20G%C3%A2lanth%C3%ADr" method="POST" enctype="text/plain">
       <input type="email" name="email" placeholder="your@email.com" required>
       <button type="submit">Notify Me</button>
     </form>
