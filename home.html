@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Welcome to Gâlanthír</title>
+<style>
+  html,body{
+    margin:0;
+    padding:0;
+    height:100%;
+    width:100%;
+  }
+
+  .stage{
+    position:relative;
+    width:100%;
+    height:100vh;
+  }
+
+  .map-bg{
+    position:absolute;
+    inset:0;
+    background-image:url('map_bg.webp');
+    background-size:cover;
+    background-position:center;
+  }
+
+  .icon-nav{
+    position:absolute;
+    bottom:0;
+    left:0;
+    width:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:60px;
+    padding:28px 4vw 36px;
+  }
+
+  .icon-nav a{
+    display:block;
+    width:160px;
+    height:160px;
+    border-radius:50%;
+    clip-path:circle(50%);
+  }
+
+  .icon-nav img{
+    width:160px;
+    height:160px;
+    object-fit:contain;
+    cursor:pointer;
+    transition:transform 0.3s ease;
+  }
+
+  .icon-nav img:hover{
+    transform:translateY(-6px);
+  }
+</style>
+</head>
+<body>
+
+<div class="stage">
+  <div class="map-bg"></div>
+
+  <nav class="icon-nav">
+    <a href="people.html"><img src="people_icon.webp" alt="People"></a>
+    <a href="books.html"><img src="book_icon.webp" alt="Books"></a>
+    <a href="about.html"><img src="quill_icon.webp" alt="About Me"></a>
+  </nav>
+</div>
+
+</body>
+</html>
