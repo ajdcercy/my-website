@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The World of Gâlanthír - Coming Soon</title>
+<style>
+  html,body{
+    margin:0;
+    padding:0;
+    height:100%;
+    width:100%;
+    font-family:'Cormorant Garamond', serif;
+  }
+
+  .stage{
+    position:relative;
+    width:100%;
+    height:100vh;
+  }
+
+  .map-bg{
+    position:fixed;
+    inset:0;
+    background-image:url('map_bg.webp');
+    background-size:cover;
+    background-position:center;
+  }
+
+  .darken{
+    position:fixed;
+    inset:0;
+    background:rgba(10,20,20,0.6);
+  }
+
+  .content{
+    position:relative;
+    height:100%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    color:#f4ead2;
+  }
+
+  h1{
+    font-size:48px;
+    margin-bottom:14px;
+  }
+
+  .back-home{
+    position:fixed;
+    top:24px;
+    left:24px;
+    z-index:30;
+    color:#cdbf9e;
+    text-decoration:none;
+    font-size:15px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    text-shadow:0 2px 8px rgba(0,0,0,0.6);
+    transition:color 0.2s ease;
+  }
+  .back-home:hover{ color:#e8c987; }
+</style>
+</head>
+<body>
+
+<div class="stage">
+  <div class="map-bg"></div>
+  <div class="darken"></div>
+
+  <a class="back-home" href="index.html">&larr; Back to Home</a>
+
+  <div class="content">
+    <h1>The World of Gâlanthír</h1>
+    <p>Coming soon.</p>
+  </div>
+</div>
+
+</body>
+</html>
