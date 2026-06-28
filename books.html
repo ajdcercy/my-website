@@ -241,9 +241,11 @@
 </div>
 
 <script>
-  const bookGrid    = document.getElementById('bookGrid');
-  const extraDarken = document.getElementById('extraDarken');
-  const bookUnits   = document.querySelectorAll('.book-unit');
+const bookGrid    = document.getElementById('bookGrid');
+const extraDarken = document.getElementById('extraDarken');
+const backHome    = document.getElementById('backHome');
+const content     = document.querySelector('.content');
+const bookUnits   = document.querySelectorAll('.book-unit');
 
   bookUnits.forEach(unit => {
     unit.querySelector('.book-cover').addEventListener('click', () => {
@@ -252,15 +254,19 @@
       // Close all books first
       bookUnits.forEach(u => u.classList.remove('is-open'));
 
-      if (!alreadyOpen) {
-        // Open this one
-        unit.classList.add('is-open');
-        bookGrid.classList.add('has-open');
-        extraDarken.classList.add('is-active');
-      } else {
-        // It was already open — clicking again closes everything
-        bookGrid.classList.remove('has-open');
-        extraDarken.classList.remove('is-active');
+     if (!alreadyOpen) {
+  // Open this one
+  unit.classList.add('is-open');
+  bookGrid.classList.add('has-open');
+  extraDarken.classList.add('is-active');
+  backHome.classList.add('is-disabled');
+  content.classList.add('is-dimmed');
+} else {
+  // It was already open — clicking again closes everything
+  bookGrid.classList.remove('has-open');
+  extraDarken.classList.remove('is-active');
+  backHome.classList.remove('is-disabled');
+  content.classList.remove('is-dimmed');
       }
     });
   });
