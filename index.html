@@ -10,17 +10,17 @@
   html,body{
     margin:0;
     padding:0;
-    height:100%;
     width:100%;
-    overflow:hidden;
+    overflow-x:hidden;
+    background:#1c2e2e;
     font-family:'Cormorant Garamond', serif;
   }
 
   .stage{
     position:relative;
     width:100%;
-    height:100vh;
-    height:100dvh;
+    min-height:100vh;
+    min-height:100dvh;
   }
 
   .map-bg{
@@ -38,21 +38,22 @@
   }
 
   .title-wrap{
-    position:absolute;
-    inset:0;
+    position:relative;
     z-index:5;
     display:flex;
     flex-direction:column;
     align-items:center;
-    justify-content:center;
     text-align:center;
-    padding:0 6vw 22vh;
-    pointer-events:none;
+    padding:8vh 6vw 10vh;
   }
 
-  .title-wrap .welcome,
-  .title-wrap .notify{
-    pointer-events:auto;
+  .intro-text{
+    max-width:680px;
+    margin:24px auto 0;
+    font-size:18px;
+    line-height:1.75;
+    color:#f4ead2;
+    text-shadow:0 2px 10px rgba(0,0,0,0.6);
   }
 
   .welcome{
@@ -72,65 +73,31 @@
     text-shadow:0 3px 18px rgba(0,0,0,0.6);
   }
 
-  .notify{
-    margin-top:30px;
-    display:flex;
-    gap:10px;
-  }
-
-  .notify input{
-    font-family:'Cormorant Garamond', serif;
-    font-size:15px;
-    padding:10px 16px;
-    border:1px solid #cdbf9e;
-    background:rgba(20,30,30,0.45);
-    color:#f4ead2;
-    width:240px;
-    outline:none;
-  }
-  .notify input::placeholder{ color:rgba(244,234,210,0.55); }
-
-  .notify button{
-    font-family:'Cormorant Garamond', serif;
-    letter-spacing:0.12em;
-    text-transform:uppercase;
-    font-size:13px;
-    padding:10px 22px;
-    border:1px solid #e8c987;
-    background:#e8c987;
-    color:#2a2113;
-    cursor:pointer;
-    transition:background 0.2s ease, color 0.2s ease;
-  }
-  .notify button:hover{
-    background:transparent;
-    color:#e8c987;
-  }
-
   .icon-nav{
-    position:absolute;
+    position:fixed;
     bottom:0;
     left:0;
     width:100%;
-    z-index:6;
+    z-index:50;
     display:flex;
     justify-content:center;
     align-items:center;
     gap:60px;
-    padding:28px 4vw calc(36px + env(safe-area-inset-bottom));
+    padding:18px 4vw calc(18px + env(safe-area-inset-bottom));
+    background:linear-gradient(to top, rgba(8,14,14,0.85), rgba(8,14,14,0));
   }
 
   .icon-nav a{
     display:block;
-    width:160px;
-    height:160px;
+    width:84px;
+    height:84px;
     border-radius:50%;
     clip-path:circle(50%);
   }
 
   .icon-nav img{
-    width:160px;
-    height:160px;
+    width:84px;
+    height:84px;
     object-fit:contain;
     cursor:pointer;
     transition:transform 0.3s ease;
@@ -140,10 +107,42 @@
     transform:translateY(-6px);
   }
 
-  /* --- Mobile --- */
+  /* --- Scrollable content below the hero --- */
+  .articles{
+    position:relative;
+    background:#15211f;
+    color:#e9dcc3;
+    padding:80px 8vw calc(140px + env(safe-area-inset-bottom));
+  }
+
+  .articles .article{
+    max-width:700px;
+    margin:0 auto 70px;
+  }
+
+  .articles h2{
+    font-family:'Cinzel', serif;
+    color:#e8c987;
+    font-size:clamp(26px, 3vw, 36px);
+    margin-bottom:16px;
+  }
+
+  .articles .meta{
+    font-size:14px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:#cdbf9e;
+    margin-bottom:18px;
+  }
+
+  .articles p{
+    font-size:18px;
+    line-height:1.75;
+    margin-bottom:18px;
+  }
   @media (max-width:640px){
     .title-wrap{
-      padding:0 6vw 32vh;
+      padding:6vh 6vw 4vh;
     }
 
     .welcome{
@@ -155,45 +154,33 @@
       margin-top:6px;
     }
 
-    .notify{
-      flex-direction:column;
-      width:100%;
-      max-width:280px;
-      margin:20px auto 0;
-    }
-
-    .notify input{
-      width:100%;
-    }
-
-    .notify button{
-      width:100%;
+    .icon-nav{
+      flex-wrap:wrap;
     }
 
     .icon-nav{
-      gap:18px;
-      padding:16px 4vw calc(22px + env(safe-area-inset-bottom));
+      gap:14px;
+      padding:10px 4vw calc(12px + env(safe-area-inset-bottom));
     }
 
     .icon-nav a{
-      width:72px;
-      height:72px;
+      width:52px;
+      height:52px;
     }
 
     .icon-nav img{
-      width:72px;
-      height:72px;
+      width:52px;
+      height:52px;
     }
   }
 
   /* --- Very short screens (landscape phones) --- */
   @media (max-height:480px){
     .title-wrap{
-      padding-bottom:18vh;
+      padding:4vh 6vw 2vh;
     }
     .welcome{ font-size:13px; }
     .welcome .title{ font-size:clamp(26px, 8vw, 40px); margin-top:4px; }
-    .notify{ margin-top:10px; }
   }
 </style>
 </head>
@@ -205,21 +192,35 @@
 
   <div class="title-wrap">
     <p class="welcome">Welcome to <span class="title">Gâlanthír</span></p>
-    <form class="notify" action="mailto:ajdcercy@gmail.com?subject=Notify%20me%20about%20G%C3%A2lanth%C3%ADr" method="POST" enctype="text/plain">
-      <input type="email" name="email" placeholder="your@email.com" required>
-      <button type="submit">Notify Me</button>
-    </form>
+    <p class="intro-text">Hello. My name is A. J. d'Cercy, and this is my website, all about my world, Gâlanthír, and the books set in it. You can use the icons below to explore the people, the gods, the magic, and the world I've been building for more than twelve years.</p>
   </div>
 
   <nav class="icon-nav">
-    <a href="world.html"><img src="placeholder.webp" alt="World"></a>
+    <a href="world.html"><img src="world_icon.webp" alt="World"></a>
     <a href="people.html"><img src="people_icon.webp" alt="People"></a>
-    <a href="gods.html"><img src="placeholder.webp" alt="Gods"></a>
-    <a href="magic.html"><img src="placeholder.webp" alt="Magic"></a>
+    <a href="gods.html"><img src="gods_icon.webp" alt="Gods"></a>
+    <a href="magic.html"><img src="magic_icon.webp" alt="Magic"></a>
     <a href="books.html"><img src="book_icon.webp" alt="Books"></a>
     <a href="about.html"><img src="quill_icon.webp" alt="About Me"></a>
   </nav>
 </div>
+
+<!--<section class="articles">
+
+  <article class="article">
+    <h2>Replace this with a real headline</h2>
+    <div class="meta">Posted — Month Day, Year</div>
+    <p>Write your article text here. This is just a placeholder paragraph so you can see how the spacing, type size, and color look against the dark background. Swap this out with real news, lore drops, devlog updates, or anything else you want visitors to scroll through.</p>
+    <p>Add as many paragraphs as you like — the section grows to fit whatever you put in it.</p>
+  </article>
+
+  <article class="article">
+    <h2>A second article example</h2>
+    <div class="meta">Posted — Month Day, Year</div>
+    <p>Duplicate the whole <code>&lt;article class="article"&gt;</code> block above for each new post. The icon bar at the bottom will stay fixed in place no matter how far down the page you scroll.</p>
+  </article>
+
+</section>-->
 
 </body>
 </html>
