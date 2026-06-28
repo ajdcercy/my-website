@@ -86,6 +86,79 @@
     transition:color 0.2s ease;
   }
   .back-home:hover{ color:#e8c987; }
+
+  /* --- Friends of the Author --- */
+  .friends{
+    margin-top:60px;
+    padding-top:40px;
+    border-top:1px solid rgba(232,201,135,0.3);
+    text-align:center;
+  }
+
+  .friends h2{
+    font-size:26px;
+    color:#e8c987;
+    margin-bottom:24px;
+  }
+
+  .friend-list{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:20px;
+    margin-bottom:40px;
+  }
+
+  .friend-card{
+    width:128px;
+    height:64px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-decoration:none;
+    color:#f4ead2;
+    border:1px solid #cdbf9e;
+    border-radius:6px;
+    background:rgba(20,30,30,0.45);
+    overflow:hidden;
+    transition:border-color 0.2s ease, transform 0.2s ease, background 0.2s ease;
+  }
+
+  .friend-card img{
+    width:128px;
+    height:64px;
+    object-fit:cover;
+    display:block;
+  }
+
+  .friend-card:hover{
+    border-color:#e8c987;
+    background:rgba(232,201,135,0.12);
+    transform:translateY(-4px);
+  }
+
+  .notify-btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    padding:14px 30px;
+    border-radius:30px;
+    border:1px solid #e8c987;
+    background:#e8c987;
+    color:#2a2113;
+    font-family:'Cormorant Garamond', serif;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    font-size:14px;
+    text-decoration:none;
+    cursor:pointer;
+    transition:background 0.2s ease, color 0.2s ease;
+  }
+
+  .notify-btn:hover{
+    background:transparent;
+    color:#e8c987;
+  }
 </style>
 </head>
 <body>
@@ -109,6 +182,26 @@
       <p>These days, he channels that same love into writing fiction, playing video games like Elden Ring and FFXIV, running D&amp;D and Pathfinder campaigns for friends and family, and playing Magic: The Gathering — including designing his own custom cards. When he's not at the gaming table, he can be found learning swordplay, with a particular fondness for the rapier — which may explain why his debut protagonist shares the same preference.</p>
 
       <p>His favorite books, in no particular order, are Redwall, Nevernight, Piercing the Darkness, The Cleric Quintet, and The Hot Zone. He is currently reading The Lightlark Saga, by Alex Aster.</p>
+    </div>
+
+    <div class="friends">
+      <h2>Friends of the Author</h2>
+
+      <div class="friend-list">
+
+        <a class="friend-card" href="https://www.brightbardgames.com/" target="_blank" rel="noopener">
+          <img src="friend-brightbard.webp" alt="Bright Bard Games">
+        </a>
+
+        <a class="friend-card" href="https://www.emilyentner.com" target="_blank" rel="noopener">
+          <img src="friend-emily.webp" alt="Emily Entner">
+        </a>
+
+        <!-- Duplicate the .friend-card block above for each additional friend/affiliate -->
+
+      </div>
+
+      <a class="notify-btn" href="mailto:ajdcercy@gmail.com?subject=Notify%20me%20about%20G%C3%A2lanth%C3%ADr">Notify Me</a>
     </div>
   </div>
 </div>
