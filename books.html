@@ -12,7 +12,8 @@
     padding:0;
     height:100%;
     width:100%;
-    overflow:auto;
+    overflow-x:hidden;
+    overflow-y:auto;
     font-family:'Cormorant Garamond', serif;
   }
 
@@ -38,36 +39,59 @@
   }
 
   .content{
-  position:relative;
-  z-index:5;
-  height:100%;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:flex-start;
-  text-align:center;
-  color:#f4ead2;
-  padding:8vh 6vw 0;
+    position:relative;
+    z-index:5;
+    height:100%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:flex-start;
+    text-align:center;
+    color:#f4ead2;
+    padding:8vh 6vw 0;
+  }
+
+  .content h1,
+  .content .intro-text{
+    transition:opacity 0.4s ease;
+  }
+
+  .content.is-dimmed h1,
+  .content.is-dimmed .intro-text{
+    opacity:0.25;
+  }
+
+  .intro-text{
+    max-width:560px;
+    margin:0 auto 50px;
+    font-size:17px;
+    line-height:1.6;
+    color:#e9dcc3;
   }
 
   .back-home{
-  position:absolute;
-  top:24px;
-  left:24px;
-  z-index:60;
-  color:#cdbf9e;
-  text-decoration:none;
-  font-size:15px;
-  letter-spacing:0.08em;
-  text-transform:uppercase;
-  text-shadow:0 2px 8px rgba(0,0,0,0.6);
-  transition:color 0.2s ease;
-}
+    position:absolute;
+    top:24px;
+    left:24px;
+    z-index:60;
+    color:#cdbf9e;
+    text-decoration:none;
+    font-size:15px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    text-shadow:0 2px 8px rgba(0,0,0,0.6);
+    transition:color 0.2s ease;
+  }
 
-.back-home:hover{
-  color:#e8c987;
-}
-  
+  .back-home:hover{
+    color:#e8c987;
+  }
+
+  .back-home.is-disabled{
+    pointer-events:none;
+    opacity:0.4;
+  }
+
   h1{
     font-family:'Cinzel', serif;
     font-size:clamp(32px, 5vw, 56px);
@@ -205,15 +229,16 @@
 <div class="stage">
   <div class="map-bg"></div>
   <div class="darken"></div>
-  <a class="back-home" href="index.html">&larr; Back to Home</a>
+
+  <a class="back-home" id="backHome" href="index.html">&larr; Back to Home</a>
 
   <div class="extra-darken" id="extraDarken"></div>
 
-<div class="content">
-  <h1>Books</h1>
-  <p class="intro-text">Here, you can click on the books to read a little about them. Click on them again to close the window.</p>
+  <div class="content">
+    <h1>Books</h1>
+    <p class="intro-text">Here, you can click on the books to read a little about them. Click on them again to close the window.</p>
 
-  <div class="book-grid" id="bookGrid">
+    <div class="book-grid" id="bookGrid">
 
       <div class="book-unit" data-book="book1">
         <div class="book-cover">
@@ -222,11 +247,8 @@
         <div class="book-panel">
           <h2>Rites of Ash and Frost</h2>
           <p>Five years ago, Dani Greenbottle left Barrow Hill in the middle of the night and never looked back. She left behind a life she couldn't fit into, a destiny she didn't want — and the one woman she never stopped loving.</p>
-
           <p>Now a letter has found her on the road. It's from Evelynn Thistledown, priestess of the Eversong, and it says one thing: Come home.</p>
-
           <p>Something is wrong. Midsummer has arrived, but winter hasn't left. Crops are dying. Wells are frozen. And Evie, steady, radiant, unshakeable Evie, is frightened.</p>
-
           <p>Dani comes. Of course she comes.</p>
           <a class="buy-link" href="https://www.amazon.com/Rites-Ash-Frost-J-dCercy/dp/B0G71PBLY5?crid=2LYASW02V2DF1&dib=eyJ2IjoiMSJ9.jo-ZBN6E_sJwQPnrxJOnG1wSMbr1as3i5P7PWpS81oQ.OgglFTiVaZtAib-n5sBazw3n6pGhAwUKN_xNJt85s8M&dib_tag=se&keywords=a.j.+d%27cercy&qid=1782284346&sprefix=%2Caps%2C115&sr=8-1" target="_blank" rel="noopener">Buy on Amazon</a>
         </div>
@@ -241,11 +263,11 @@
 </div>
 
 <script>
-const bookGrid    = document.getElementById('bookGrid');
-const extraDarken = document.getElementById('extraDarken');
-const backHome    = document.getElementById('backHome');
-const content     = document.querySelector('.content');
-const bookUnits   = document.querySelectorAll('.book-unit');
+  const bookGrid    = document.getElementById('bookGrid');
+  const extraDarken = document.getElementById('extraDarken');
+  const backHome    = document.getElementById('backHome');
+  const content     = document.querySelector('.content');
+  const bookUnits   = document.querySelectorAll('.book-unit');
 
   bookUnits.forEach(unit => {
     unit.querySelector('.book-cover').addEventListener('click', () => {
@@ -254,19 +276,19 @@ const bookUnits   = document.querySelectorAll('.book-unit');
       // Close all books first
       bookUnits.forEach(u => u.classList.remove('is-open'));
 
-     if (!alreadyOpen) {
-  // Open this one
-  unit.classList.add('is-open');
-  bookGrid.classList.add('has-open');
-  extraDarken.classList.add('is-active');
-  backHome.classList.add('is-disabled');
-  content.classList.add('is-dimmed');
-} else {
-  // It was already open — clicking again closes everything
-  bookGrid.classList.remove('has-open');
-  extraDarken.classList.remove('is-active');
-  backHome.classList.remove('is-disabled');
-  content.classList.remove('is-dimmed');
+      if (!alreadyOpen) {
+        // Open this one
+        unit.classList.add('is-open');
+        bookGrid.classList.add('has-open');
+        extraDarken.classList.add('is-active');
+        backHome.classList.add('is-disabled');
+        content.classList.add('is-dimmed');
+      } else {
+        // It was already open — clicking again closes everything
+        bookGrid.classList.remove('has-open');
+        extraDarken.classList.remove('is-active');
+        backHome.classList.remove('is-disabled');
+        content.classList.remove('is-dimmed');
       }
     });
   });
