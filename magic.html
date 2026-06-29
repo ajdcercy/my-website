@@ -1,4 +1,4 @@
-t<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -315,14 +315,14 @@ t<!DOCTYPE html>
     // dir = 1 means moving forward (current slides out left, new comes in from right)
     // dir = -1 means moving backward (current slides out right, new comes in from left)
     slide.classList.remove('in-left','in-right','out-left','out-right');
-    slide.classList.add(dir === 1 ? 'out-left' : 'out-right');
+    slide.classList.add(dir === -1 ? 'out-left' : 'out-right');
 
     slide.addEventListener('animationend', function handler(){
       slide.removeEventListener('animationend', handler);
       current = next;
       paint(current);
       slide.classList.remove('out-left','out-right');
-      slide.classList.add(dir === 1 ? 'in-right' : 'in-left');
+      slide.classList.add(dir === -1 ? 'in-right' : 'in-left');
 
       slide.addEventListener('animationend', function done(){
         slide.removeEventListener('animationend', done);
