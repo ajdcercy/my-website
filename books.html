@@ -287,15 +287,16 @@ function centerUnit(unit){
   // Reset first so we measure its natural, un-shifted position
   unit.style.transform = 'translate(0px, 0px)';
 
-  const rect = unit.querySelector('.book-cover').getBoundingClientRect();
-  const unitCenterX = rect.left + rect.width / 2;
-  const unitCenterY = rect.top + rect.height / 2;
+  // Measure the panel, not the cover — the panel is what we want centered on screen
+  const rect = unit.querySelector('.book-panel').getBoundingClientRect();
+  const panelCenterX = rect.left + rect.width / 2;
+  const panelCenterY = rect.top + rect.height / 2;
 
   const viewportCenterX = window.innerWidth / 2;
   const viewportCenterY = window.innerHeight / 2;
 
-  const deltaX = viewportCenterX - unitCenterX;
-  const deltaY = viewportCenterY - unitCenterY;
+  const deltaX = viewportCenterX - panelCenterX;
+  const deltaY = viewportCenterY - panelCenterY;
 
   unit.style.transform = `translate(${deltaX}px, ${deltaY}px)`;
 }
@@ -311,14 +312,18 @@ bookUnits.forEach(unit => {
     });
     bookGrid.classList.remove('has-open');
 
-    if (!alreadyOpen) {
-      // Open this one, hide the others, and slide it to screen center
-      unit.classList.add('is-open');
-      bookGrid.classList.add('has-open');
-      centerUnit(unit);
-      extraDarken.classList.add('is-active');
-      backHome.classList.add('is-disabled');
-      content.classList.add('is-dimmed');
+ if (!alreadyOpen) {
+  // Open this one, hide the others, and slide it so the PANEL lands centered
+  unit.classList.add('is-open');
+  bookGrid.classList.add('has-open');
+
+  // Wait a frame so the panel's own open-state transform is applied before we measure it
+  requestAnimationFrame(() => centerUnit(unit));
+
+  extraDarken.classList.add('is-active');
+  backHome.classList.add('is-disabled');
+  content.classList.add('is-dimmed');
+}
     } else {
       // It was already open — clicking again closes everything
       extraDarken.classList.remove('is-active');
