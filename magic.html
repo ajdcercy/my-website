@@ -268,7 +268,6 @@
       <button class="arrow" id="next" aria-label="Next">&#8250;</button>
     </div>
 
-    <div class="dots" id="dots"></div>
   </div>
 
 </div>
@@ -286,24 +285,13 @@
   const slide    = document.getElementById('slide');
   const cardImg  = document.getElementById('cardImg');
   const cardBlurb= document.getElementById('cardBlurb');
-  const dotsWrap = document.getElementById('dots');
   let current = 0;
   let animating = false;
-
-  // Build dots
-  schools.forEach((s, i) => {
-    const dot = document.createElement('div');
-    dot.className = 'dot';
-    dot.addEventListener('click', () => { if(i !== current) goTo(i, i > current ? 1 : -1); });
-    dotsWrap.appendChild(dot);
-  });
-  const dots = Array.from(dotsWrap.children);
 
   function paint(i){
     cardImg.src = schools[i].img;
     cardImg.alt = schools[i].alt;
     cardBlurb.textContent = schools[i].blurb;
-    dots.forEach((d, di) => d.classList.toggle('is-active', di === i));
   }
 
   function goTo(index, dir){
