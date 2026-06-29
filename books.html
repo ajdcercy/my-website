@@ -141,16 +141,16 @@
     filter:brightness(1.1);
   }
 
-  /* Books that are not the chosen one fade out while one is open */
-  .book-grid.has-open .book-unit:not(.is-open) .book-cover{
-    opacity:0;
-    pointer-events:none;
-  }
+/* Books that are not the chosen one fade out while one is open */
+.book-grid.has-open .book-unit:not(.is-current) .book-cover{
+  opacity:0;
+  pointer-events:none;
+}
 
-  /* The chosen book itself stays lit, no dim */
-  .book-unit.is-open .book-cover{
-    filter:brightness(1.05);
-  }
+/* The chosen book itself stays lit, no dim */
+.book-unit.is-current .book-cover{
+  filter:brightness(1.05);
+}
 
   /* Extra darken layer that intensifies once a book is open */
   .extra-darken{
@@ -307,13 +307,13 @@ bookUnits.forEach(unit => {
 if (!alreadyOpen) {
   // Closing whatever else might be open, instantly (nothing was visible there anyway)
   bookUnits.forEach(u => {
-    u.classList.remove('is-open');
+    u.classList.remove('is-open', 'is-current');
     u.style.transform = 'translate(0px, 0px)';
   });
   bookGrid.classList.remove('has-open');
 
   // Open this one, hide the others, and slide it so the PANEL lands centered
-  unit.classList.add('is-open');
+  unit.classList.add('is-open', 'is-current');
   bookGrid.classList.add('has-open');
 
   // Wait a frame so the panel's own open-state transform is applied before we measure it
@@ -323,14 +323,16 @@ if (!alreadyOpen) {
   backHome.classList.add('is-disabled');
   content.classList.add('is-dimmed');
 } else {
-  // It was already open — slide it back first, THEN bring the other covers back
+  // It was already open — fade the panel out and start sliding back immediately
+  unit.classList.remove('is-open');
   unit.style.transform = 'translate(0px, 0px)';
   extraDarken.classList.remove('is-active');
   backHome.classList.remove('is-disabled');
   content.classList.remove('is-dimmed');
 
+  // Keep the other covers hidden until this one finishes sliding back into the row
   setTimeout(() => {
-    unit.classList.remove('is-open');
+    unit.classList.remove('is-current');
     bookGrid.classList.remove('has-open');
   }, 500); // matches the 0.5s slide transition
 }
