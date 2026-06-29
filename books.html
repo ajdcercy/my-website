@@ -112,14 +112,15 @@
   }
 
   /* When any book is open, shift the whole row left to make room for the panel */
-  .book-grid.has-open{
-    transform:translateX(-20vw);
+  .book-unit{
+    transition:transform 0.5s ease;
   }
 
   .book-unit{
     position:relative;
     display:flex;
     align-items:center;
+    transition:transform 0.5s ease;
   }
 
   .book-cover{
@@ -281,30 +282,48 @@
   const backHome    = document.getElementById('backHome');
   const content     = document.querySelector('.content');
   const bookUnits   = document.querySelectorAll('.book-unit');
+function centerUnit(unit){
+  // Reset first so we measure its natural, un-shifted position
+  unit.style.transform = 'translate(0px, 0px)';
 
-  bookUnits.forEach(unit => {
-    unit.querySelector('.book-cover').addEventListener('click', () => {
-      const alreadyOpen = unit.classList.contains('is-open');
+  const rect = unit.querySelector('.book-cover').getBoundingClientRect();
+  const unitCenterX = rect.left + rect.width / 2;
+  const unitCenterY = rect.top + rect.height / 2;
 
-      // Close all books first
-      bookUnits.forEach(u => u.classList.remove('is-open'));
+  const viewportCenterX = window.innerWidth / 2;
+  const viewportCenterY = window.innerHeight / 2;
 
-      if (!alreadyOpen) {
-        // Open this one
-        unit.classList.add('is-open');
-        bookGrid.classList.add('has-open');
-        extraDarken.classList.add('is-active');
-        backHome.classList.add('is-disabled');
-        content.classList.add('is-dimmed');
-      } else {
-        // It was already open — clicking again closes everything
-        bookGrid.classList.remove('has-open');
-        extraDarken.classList.remove('is-active');
-        backHome.classList.remove('is-disabled');
-        content.classList.remove('is-dimmed');
-      }
+  const deltaX = viewportCenterX - unitCenterX;
+  const deltaY = viewportCenterY - unitCenterY;
+
+  unit.style.transform = `translate(${deltaX}px, ${deltaY}px)`;
+}
+
+bookUnits.forEach(unit => {
+  unit.querySelector('.book-cover').addEventListener('click', () => {
+    const alreadyOpen = unit.classList.contains('is-open');
+
+    // Close all books first
+    bookUnits.forEach(u => {
+      u.classList.remove('is-open');
+      u.style.transform = 'translate(0px, 0px)';
     });
+
+    if (!alreadyOpen) {
+      // Open this one and slide it to screen center
+      unit.classList.add('is-open');
+      centerUnit(unit);
+      extraDarken.classList.add('is-active');
+      backHome.classList.add('is-disabled');
+      content.classList.add('is-dimmed');
+    } else {
+      // It was already open — clicking again closes everything
+      extraDarken.classList.remove('is-active');
+      backHome.classList.remove('is-disabled');
+      content.classList.remove('is-dimmed');
+    }
   });
+});
 </script>
 
 </body>
