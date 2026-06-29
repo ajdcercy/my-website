@@ -282,6 +282,7 @@
   const backHome    = document.getElementById('backHome');
   const content     = document.querySelector('.content');
   const bookUnits   = document.querySelectorAll('.book-unit');
+  
 function centerUnit(unit){
   // Reset first so we measure its natural, un-shifted position
   unit.style.transform = 'translate(0px, 0px)';
@@ -308,10 +309,12 @@ bookUnits.forEach(unit => {
       u.classList.remove('is-open');
       u.style.transform = 'translate(0px, 0px)';
     });
+    bookGrid.classList.remove('has-open');
 
     if (!alreadyOpen) {
-      // Open this one and slide it to screen center
+      // Open this one, hide the others, and slide it to screen center
       unit.classList.add('is-open');
+      bookGrid.classList.add('has-open');
       centerUnit(unit);
       extraDarken.classList.add('is-active');
       backHome.classList.add('is-disabled');
