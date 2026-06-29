@@ -304,15 +304,14 @@ function centerUnit(unit){
 bookUnits.forEach(unit => {
   unit.querySelector('.book-cover').addEventListener('click', () => {
     const alreadyOpen = unit.classList.contains('is-open');
+if (!alreadyOpen) {
+  // Closing whatever else might be open, instantly (nothing was visible there anyway)
+  bookUnits.forEach(u => {
+    u.classList.remove('is-open');
+    u.style.transform = 'translate(0px, 0px)';
+  });
+  bookGrid.classList.remove('has-open');
 
-    // Close all books first
-    bookUnits.forEach(u => {
-      u.classList.remove('is-open');
-      u.style.transform = 'translate(0px, 0px)';
-    });
-    bookGrid.classList.remove('has-open');
-
- if (!alreadyOpen) {
   // Open this one, hide the others, and slide it so the PANEL lands centered
   unit.classList.add('is-open');
   bookGrid.classList.add('has-open');
@@ -323,12 +322,18 @@ bookUnits.forEach(unit => {
   extraDarken.classList.add('is-active');
   backHome.classList.add('is-disabled');
   content.classList.add('is-dimmed');
-    } else {
-      // It was already open — clicking again closes everything
-      extraDarken.classList.remove('is-active');
-      backHome.classList.remove('is-disabled');
-      content.classList.remove('is-dimmed');
-    }
+} else {
+  // It was already open — slide it back first, THEN bring the other covers back
+  unit.style.transform = 'translate(0px, 0px)';
+  extraDarken.classList.remove('is-active');
+  backHome.classList.remove('is-disabled');
+  content.classList.remove('is-dimmed');
+
+  setTimeout(() => {
+    unit.classList.remove('is-open');
+    bookGrid.classList.remove('has-open');
+  }, 500); // matches the 0.5s slide transition
+}
   });
 });
 </script>
